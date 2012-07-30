@@ -26,6 +26,7 @@ def mock_mail_message(options = {})
   from = [ options.fetch(:from) { 'foo@bar.com' } ]
   to = [ options.fetch(:to) {'foo@bar.com'} ]
   body = options.fetch(:body) { 'foo@bar.com has moved use awesome@awesomesauce.com now' }
+  bcc = [ options.fetch(:bcc) { 'bar@bar.com' } ]
   
   message = mock('Mail::Message')
   message.stubs(:subject).returns(subject)
@@ -39,6 +40,7 @@ def mock_mail_message(options = {})
   message.stubs(:html_part).returns(nil)
   message.stubs(:text_part).returns(nil)
   message.stubs(:reply_to).returns('replyto@example.com')
+  message.stubs(:bcc).returns(bcc)
   
   message
 end
