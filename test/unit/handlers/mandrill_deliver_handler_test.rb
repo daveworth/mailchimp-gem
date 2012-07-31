@@ -39,8 +39,15 @@ class MandrillDeliveryHandlerTest < Test::Unit::TestCase
         assert_equal 'Foo Bar', message_payload[:message][:from_name]
         assert_equal 'foo@bar.com has moved use awesome@awesomesauce.com now', message_payload[:message][:html]
         assert_equal [{email: 'foo@bar.com', name: 'foo@bar.com'}], message_payload[:message][:to]
-        assert_equal 'bar@bar.com', message_payload[:message][:bcc_address]
         assert_equal({'Reply-To' => 'replyto@example.com'}, message_payload[:message][:headers])
+      end
+
+      should "handle bcc correctly" do
+        message = mock_mail_message
+        message.stubs(:bcc).returns(["bar@bar.com"])
+        @mandrill_delivery_handler.deliver!(message)
+        message_payload = @mandrill_delivery_handler.send(:get_message_payload, message)
+        assert_equal 'bar@bar.com', message_payload[:message][:bcc_address]
       end
     end
   end
