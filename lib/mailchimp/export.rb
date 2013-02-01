@@ -1,5 +1,8 @@
 module Mailchimp
   class Export < Base
+    
+    format :plain
+    
     def initialize(api_key = nil, default_parameters = {})
       super(api_key, {:apikey => api_key}.merge(default_parameters))
     end
