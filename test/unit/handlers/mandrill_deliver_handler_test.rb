@@ -4,7 +4,7 @@ require File.join('./lib/mailchimp','handlers', 'mandrill_delivery_handler')
 class MandrillDeliveryHandlerTest < Test::Unit::TestCase
   context "when delivering a Mail::Message to the Mandrill API" do
     setup do
-      @mandrill_delivery_handler = Mailchimp::MandrillDeliveryHandler.new
+      @mandrill_delivery_handler = Mailchimp::MandrillDeliveryHandler.new(:from_name => "Foo Bar")
       @fake_mandrill_api_response = [{"email"=>"foo@bar.com", "status"=>"sent"}]
       
       FakeWeb.register_uri(
@@ -36,7 +36,7 @@ class MandrillDeliveryHandlerTest < Test::Unit::TestCase
         assert_equal true, message_payload[:track_clicks]
         assert_equal 'Subject', message_payload[:message][:subject]
         assert_equal 'foo@bar.com', message_payload[:message][:from_email]
-        assert_equal 'Mandrill Email Delivery Handler', message_payload[:message][:from_name]
+        assert_equal 'Foo Bar', message_payload[:message][:from_name]
         assert_equal 'foo@bar.com has moved use awesome@awesomesauce.com now', message_payload[:message][:html]
         assert_equal [{email: 'foo@bar.com', name: 'foo@bar.com'}], message_payload[:message][:to]
         assert_equal({'Reply-To' => 'replyto@example.com'}, message_payload[:message][:headers])
