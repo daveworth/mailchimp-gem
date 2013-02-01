@@ -38,6 +38,7 @@ module Mailchimp
           :headers => {'Reply-To' => message.reply_to.nil? ? nil : message.reply_to }
         }
       }
+      message_payload[:message][:bcc_address] = message.bcc.first if message.bcc && !message.bcc.empty?
       [:html, :text].each do |format|
         content = get_content_for(message, format)
         message_payload[:message][format] = content if content
