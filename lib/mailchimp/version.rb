@@ -1,3 +1,3 @@
 module Mailchimp
-  VERSION = "0.0.7.alpha1"
+  VERSION = "0.0.8"
 end
