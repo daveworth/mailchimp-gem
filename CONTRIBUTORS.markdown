@@ -15,3 +15,4 @@
 * [Mike Skalnik](https://github.com/skalnik)
 * [Kristopher Murata](https://github.com/krsmurata)
 * [Michael Klishin](https://github.com/michaelklishin)
+* [Ben Simpson](https://github.com/bsimpson)
