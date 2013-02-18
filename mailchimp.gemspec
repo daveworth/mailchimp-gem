@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = Mailchimp::VERSION
   s.authors     = ["Chris Kelly"]
   s.email       = ["chris@highgroove.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/mailchimp/mailchimp-gem"
   s.summary     = %q{Mailchimp APIs in Ruby}
   s.description = %q{This provides Ruby access to (eventually) all of Mailchimp's APIs}
 
